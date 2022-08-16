@@ -15,7 +15,7 @@ def metodoPotencia(A, q_0, m, tol) -> tuple:
     iteration = 0
     error = np.inf
 
-    while iteration < m and tol > error:
+    while iteration < m and tol < error:
         q_i_1 = A@q_i
         sigmai = np.linalg.norm(q_i_1, np.inf)
         q_i_1 = q_i_1/sigmai
@@ -24,7 +24,6 @@ def metodoPotencia(A, q_0, m, tol) -> tuple:
             np.linalg.norm(q_i_1, np.inf)
         iteration += 1
         q_i = q_i_1
-
     return sigmai, q_i
 
 
@@ -43,7 +42,7 @@ def metodoPotenciaInv(A, q_0, m, tol) -> tuple:
     iteration = 0
     error = np.inf
 
-    while m > iteration and tol > error:
+    while iteration < m and tol < error:
         q_i_1 = np.linalg.solve(A, q_i)
         sigmai = np.linalg.norm(q_i_1, np.inf)
         q_i_1 = q_i_1/sigmai
